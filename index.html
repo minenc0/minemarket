@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Purwarupa</title>
+  <title>Purwa-Rupa</title>
   <style>
     body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
     header { background: #4CAF50; color: white; padding: 1rem; text-align: center; }
@@ -18,6 +17,7 @@
 <body>
   <header>
     <h1>Aneka Rempah</h1>
+    <p>Produk dengan harga dinamis (otomatis)</p>
   </header>
 
   <div class="product-grid" id="produk-container"></div>
@@ -34,11 +34,15 @@
                 <img src="${item.gambar}" alt="${item.nama}" />
               </a>
               <h4>${item.nama}</h4>
-              <p>Rp${item.harga.toLocaleString('id-ID')}</p>
+              <p>Rp${Number(item.harga).toLocaleString('id-ID')}</p>
               <a href="${item.gambar}" target="_blank" class="btn">Lihat Gambar</a>
               <button class="btn">Lihat</button>
             </div>`;
         });
+      })
+      .catch(error => {
+        console.error('Gagal memuat harga.json:', error);
+        document.getElementById('produk-container').innerHTML = '<p style="text-align:center;">Gagal memuat data produk.</p>';
       });
   </script>
 </body>
