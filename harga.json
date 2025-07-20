@@ -2,20 +2,20 @@
 [
   {
     "id": "produk_a",
-    "nama": "Produk A",
-    "harga": 50000,
+    "nama": "Bubuk Kelor",
+    "harga": 40.000/Kg,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+A"
   },
   {
     "id": "produk_b",
-    "nama": "Produk B",
-    "harga": 75000,
+    "nama": "Bubuk Kunyit",
+    "harga": 40.000/Kg,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+B"
   },
   {
     "id": "produk_c",
-    "nama": "Produk C",
-    "harga": 99000,
+    "nama": "Bubuk Jahe",
+    "harga": 45.000/Kg,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+C"
   }
 ]
