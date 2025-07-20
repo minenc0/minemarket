@@ -9,12 +9,12 @@
     "id": "produk_b",
     "nama": "Bubuk Kunyit",
     "harga": 75000,
-    "gambar": "https://via.placeholder.com/300x200?text=Bubuk+Kunyit"
+    "gambar": "https://i.imgur.com/3PgohCE.png/300x200?text=Bubuk+Kunyit"
   },
   {
     "id": "produk_c",
     "nama": "Bubuk Jahe",
     "harga": 99000,
-    "gambar": "https://via.placeholder.com/300x200?text=Bubuk+Jahe"
+    "gambar": "https://i.imgur.com/3PgohCE.png/300x200?text=Bubuk+Jahe"
   }
 ]
