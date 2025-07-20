@@ -2,11 +2,11 @@
   {
     "nama": "Bubuk Kelor",
     "harga": "Rp 40.000",
-    "gambar": "gambar/bubuk_kelor.png"
+    "gambar": "bubuk_kelor.png"
   },
   {
     "nama": "Bubuk Kunyit",
     "harga": "Rp 40.000",
-    "gambar": "gambar/bubuk_kunyit.png"
+    "gambar": "bubuk_kunyit.png"
   }
 ]
