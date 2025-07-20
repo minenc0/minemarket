@@ -9,7 +9,7 @@
     header { background: #4CAF50; color: white; padding: 1rem; text-align: center; }
     .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 1rem; }
     .product-card { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
-    .product-card img { width: 100%; border-radius: 6px; }
+    .product-card img { width: 100%; border-radius: 6px; object-fit: cover; margin-bottom: 0.5rem; }
     .btn { margin-top: 0.5rem; padding: 0.5rem 1rem; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
     .btn:hover { background: #388E3C; }
   </style>
@@ -30,9 +30,7 @@
         data.forEach(item => {
           container.innerHTML += `
             <div class="product-card">
-              <a href="${item.gambar}" target="_blank">
-                <img src="${item.gambar}" alt="${item.nama}" />
-              </a>
+              <img src="${item.gambar}" alt="${item.nama}" />
               <h4>${item.nama}</h4>
               <p>Rp${Number(item.harga).toLocaleString('id-ID')}</p>
               <a href="${item.gambar}" target="_blank" class="btn">Lihat Gambar</a>
