@@ -3,18 +3,18 @@
     "id": "produk_a",
     "nama": "Bubuk Kelor",
     "harga": 40000,
-    "gambar": "https://i.imgur.com/3PgohCE.png/300x200?text=Bubuk+Kelor"
+    "gambar": "https://i.imgur.com/3PgohCE.png"
   },
   {
     "id": "produk_b",
     "nama": "Bubuk Kunyit",
     "harga": 75000,
-    "gambar": "https://i.imgur.com/3PgohCE.png/300x200?text=Bubuk+Kunyit"
+    "gambar": "https://i.imgur.com/3PgohCE.png"
   },
   {
     "id": "produk_c",
     "nama": "Bubuk Jahe",
     "harga": 99000,
-    "gambar": "https://i.imgur.com/3PgohCE.png/300x200?text=Bubuk+Jahe"
+    "gambar": "https://i.imgur.com/3PgohCE.png"
   }
 ]
