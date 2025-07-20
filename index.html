@@ -1,77 +1,24 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aneka Rempah</title>
-  <style>
-    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header { background: #4CAF50; color: white; padding: 1rem; text-align: center; }
-    .product-list { padding: 1rem; max-width: 800px; margin: auto; }
-    .product-card {
-      display: flex;
-      align-items: center;
-      background: white;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .product-card img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 16px;
-      flex-shrink: 0;
-    }
-    .product-info h4 { margin: 0 0 8px; }
-    .product-info p { margin: 4px 0; }
-    .btn {
-      margin-top: 8px;
-      padding: 6px 12px;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover { background: #388E3C; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Aneka Rempah</h1>
-    <p>Produk dengan harga dinamis</p>
-  </header>
-
-  <div class="product-list" id="produk-container"></div>
-
-  <script>
-    fetch('harga.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('produk-container');
-        data.forEach(item => {
-          container.innerHTML += `
-            <div class="product-card">
-              <a href="${item.gambar}" target="_blank">
-                <img src="${item.gambar}" alt="${item.nama}" />
-              </a>
-              <div class="product-info">
-                <h4>${item.nama}</h4>
-                <p>Harga: Rp${Number(item.harga).toLocaleString('id-ID')}</p>
-                <a href="${item.gambar}" target="_blank" class="btn">Lihat Gambar</a>
-              </div>
-            </div>`;
-        });
-      })
-      .catch(error => {
-        console.error('Gagal memuat harga.json:', error);
-        document.getElementById('produk-container').innerHTML = '<p style="text-align:center;">Gagal memuat data produk.</p>';
+<script>
+  fetch('harga.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('produk-container');
+      data.forEach(item => {
+        container.innerHTML += `
+          <div class="product-card">
+            <a href="galeri.html?produk=${encodeURIComponent(item.nama)}">
+              <img src="${item.gambar}" alt="${item.nama}" />
+            </a>
+            <div class="product-info">
+              <h4>${item.nama}</h4>
+              <p>Harga: Rp${Number(item.harga).toLocaleString('id-ID')}</p>
+              <a href="galeri.html?produk=${encodeURIComponent(item.nama)}" class="btn">Lihat Gambar</a>
+            </div>
+          </div>`;
       });
-  </script>
-</body>
-</html>
+    })
+    .catch(error => {
+      console.error('Gagal memuat harga.json:', error);
+      document.getElementById('produk-container').innerHTML = '<p style="text-align:center;">Gagal memuat data produk.</p>';
+    });
+</script>
