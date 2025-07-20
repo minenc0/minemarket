@@ -62,9 +62,7 @@
 
   <div class="slider">
     <div class="slides" id="slides">
-      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 1">
-      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 2">
-      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 3">
+      <!-- Gambar akan dimuat di sini -->
     </div>
     <div class="nav">
       <button onclick="plusSlides(-1)">&#10094;</button>
@@ -73,13 +71,39 @@
   </div>
 
   <script>
+    const gambarPerProduk = {
+      "Bubuk Kunyit": [
+        "https://i.imgur.com/3PgohCE.png",
+        "https://i.imgur.com/3PgohCE.png",
+        "https://i.imgur.com/3PgohCE.png"
+      ],
+      "Produk Contoh": [
+        "https://via.placeholder.com/600x400",
+        "https://via.placeholder.com/600x400/0000FF",
+        "https://via.placeholder.com/600x400/FF0000"
+      ]
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const produk = urlParams.get("produk");
+
+    const slidesContainer = document.getElementById('slides');
+    slidesContainer.innerHTML = '';
+
+    let gambarList = gambarPerProduk[produk] || gambarPerProduk["Bubuk Kunyit"];
+
+    gambarList.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      slidesContainer.appendChild(img);
+    });
+
     let index = 0;
-    const slides = document.getElementById('slides');
-    const total = slides.children.length;
+    const total = gambarList.length;
 
     function showSlide(i) {
       index = (i + total) % total;
-      slides.style.transform = `translateX(${-index * 600}px)`;
+      slidesContainer.style.transform = `translateX(${-index * 600}px)`;
     }
 
     function plusSlides(n) {

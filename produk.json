@@ -1,0 +1,12 @@
+[
+  {
+    "nama": "Bubuk Kunyit",
+    "harga": "Rp 15.000",
+    "gambar": "gambar/bubuk_kunyit_utama.png"
+  },
+  {
+    "nama": "Produk Contoh",
+    "harga": "Rp 10.000",
+    "gambar": "gambar/produk_contoh_utama.png"
+  }
+]

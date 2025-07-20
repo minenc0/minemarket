@@ -1,24 +1,63 @@
-<script>
-  fetch('harga.json')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('produk-container');
-      data.forEach(item => {
-        container.innerHTML += `
-          <div class="product-card">
-            <a href="galeri.html?produk=${encodeURIComponent(item.nama)}">
-              <img src="${item.gambar}" alt="${item.nama}" />
-            </a>
-            <div class="product-info">
-              <h4>${item.nama}</h4>
-              <p>Harga: Rp${Number(item.harga).toLocaleString('id-ID')}</p>
-              <a href="galeri.html?produk=${encodeURIComponent(item.nama)}" class="btn">Lihat Gambar</a>
-            </div>
-          </div>`;
-      });
-    })
-    .catch(error => {
-      console.error('Gagal memuat harga.json:', error);
-      document.getElementById('produk-container').innerHTML = '<p style="text-align:center;">Gagal memuat data produk.</p>';
-    });
-</script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Produk</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      padding: 2rem;
+    }
+    .produk {
+      display: flex;
+      align-items: center;
+      background: white;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .produk img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 1rem;
+      border-radius: 8px;
+    }
+    .produk h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    .produk button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Produk</h1>
+  <div class="produk">
+    <img src="https://i.imgur.com/3PgohCE.png" alt="Bubuk Kunyit">
+    <div>
+      <h2>Bubuk Kunyit</h2>
+      <p>Harga: Rp 25.000</p>
+      <a href="galeri.html?produk=Bubuk Kunyit"><button>Lihat Gambar</button></a>
+    </div>
+  </div>
+
+  <div class="produk">
+    <img src="https://via.placeholder.com/600x400" alt="Produk Contoh">
+    <div>
+      <h2>Produk Contoh</h2>
+      <p>Harga: Rp 50.000</p>
+      <a href="galeri.html?produk=Produk Contoh"><button>Lihat Gambar</button></a>
+    </div>
+  </div>
+</body>
+</html>
