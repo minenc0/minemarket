@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace Sederhana</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    header { background: #4CAF50; color: white; padding: 1rem; text-align: center; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 1rem; }
+    .product-card { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
+    .product-card img { width: 100%; border-radius: 6px; }
+    .btn { margin-top: 0.5rem; padding: 0.5rem 1rem; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #388E3C; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Marketplace Taruna</h1>
+    <p>Produk dengan harga dinamis (otomatis)</p>
+  </header>
+
+  <div class="product-grid" id="produk-container"></div>
+
+  <script>
+    fetch('harga.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('produk-container');
+        data.forEach(item => {
+          container.innerHTML += `
+            <div class="product-card">
+              <a href="${item.gambar}" target="_blank">
+                <img src="${item.gambar}" alt="${item.nama}" />
+              </a>
+              <h4>${item.nama}</h4>
+              <p>Rp${item.harga.toLocaleString('id-ID')}</p>
+              <a href="${item.gambar}" target="_blank" class="btn">Lihat Gambar</a>
+              <button class="btn">Lihat</button>
+            </div>`;
+        });
+      });
+  </script>
+</body>
+</html>
