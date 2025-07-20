@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Produk</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      text-align: center;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      width: 100%;
+    }
+    .slider {
+      max-width: 600px;
+      position: relative;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+      width: 600px;
+      height: 400px;
+      object-fit: cover;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%);
+    }
+    .nav button {
+      background-color: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Galeri Gambar Produk</h1>
+
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 1">
+      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 2">
+      <img src="https://i.imgur.com/3PgohCE.png" alt="Gambar 3">
+    </div>
+    <div class="nav">
+      <button onclick="plusSlides(-1)">&#10094;</button>
+      <button onclick="plusSlides(1)">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    let index = 0;
+    const slides = document.getElementById('slides');
+    const total = slides.children.length;
+
+    function showSlide(i) {
+      index = (i + total) % total;
+      slides.style.transform = `translateX(${-index * 600}px)`;
+    }
+
+    function plusSlides(n) {
+      showSlide(index + n);
+    }
+
+    showSlide(index);
+  </script>
+</body>
+</html>
