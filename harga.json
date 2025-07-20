@@ -3,19 +3,19 @@
   {
     "id": "produk_a",
     "nama": "Bubuk Kelor",
-    "harga": 40.000/Kg,
+    "harga": 40.000,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+A"
   },
   {
     "id": "produk_b",
     "nama": "Bubuk Kunyit",
-    "harga": 40.000/Kg,
+    "harga": 40.000,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+B"
   },
   {
     "id": "produk_c",
     "nama": "Bubuk Jahe",
-    "harga": 45.000/Kg,
+    "harga": 45.000,
     "gambar": "https://via.placeholder.com/300x200?text=Produk+C"
   }
 ]
