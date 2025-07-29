@@ -1,24 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daftar Produk - Rempah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Produk Rempah</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    header { background: #2e7d32; color: white; padding: 1rem; text-align: center; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
     .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
     .product-card {
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 1rem;
+      width: 260px;
+      padding: 16px;
       text-align: center;
     }
     .product-card img {
@@ -27,47 +34,83 @@
       object-fit: contain;
       border-radius: 6px;
     }
-    .product-card h3 { margin: 0.5rem 0 0.2rem; }
-    .product-card p { color: #333; }
-    .btn {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+    .product-card h3 {
+      margin: 12px 0 4px;
+      color: #333;
     }
-    .btn:hover { background: #1b5e20; }
+    .product-card p {
+      margin: 4px 0;
+      color: #666;
+    }
+    .btn {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #2e7d32;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .btn:hover {
+      background-color: #1b5e20;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Daftar Produk Rempah</h1>
-  </header>
 
-  <div class="product-grid" id="produk-container"></div>
+  <h1>Daftar Produk Rempah</h1>
+  <div class="product-grid" id="produk-list"></div>
 
   <script>
-    fetch("/produk")
-      .then((response) => response.json())
-      .then((data) => {
-        const container = document.getElementById("produk-container");
-        data.forEach((item) => {
+    const sheetURL = "https://docs.google.com/spreadsheets/d/1GRQKGZU6cBUcN99D-4bTdXUU2lus8hU_3Mn-AUlmATg/gviz/tq?tqx=out:csv";
+
+    // Fungsi konversi ke direct link Imgur jika perlu
+    function getDirectImageLink(url) {
+      url = url.trim();
+      if (url.includes("imgur.com/a/")) {
+        const id = url.split("/a/")[1];
+        return `https://i.imgur.com/${id}.jpg`;
+      } else if (url.includes("imgur.com/") && !url.includes("i.imgur.com")) {
+        const id = url.split("/").pop();
+        return `https://i.imgur.com/${id}.jpg`;
+      }
+      return url;
+    }
+
+    fetch(sheetURL)
+      .then(response => response.text())
+      .then(csv => {
+        const rows = csv.trim().split("\n").slice(1);
+        const data = rows.map(row => {
+          const cols = row.split(","); // Hati-hati jika ada koma dalam isi sel
+          return {
+            nama: cols[1]?.replace(/"/g, "").trim(),
+            harga: cols[2]?.replace(/"/g, "").trim(),
+            jumlah: cols[3]?.replace(/"/g, "").trim(),
+            status: cols[4]?.replace(/"/g, "").trim(),
+            gambar: getDirectImageLink(cols[5]?.replace(/"/g, "").trim())
+          };
+        });
+
+        const container = document.getElementById("produk-list");
+        data.forEach(item => {
+          const hargaAngka = parseInt(item.harga.replace(/[^0-9]/g, ""));
           container.innerHTML += `
             <div class="product-card">
-              <img src="${item.gambar}" alt="${item.nama}" />
+              <img src="${item.gambar}" alt="${item.nama}" onerror="this.src='https://via.placeholder.com/250x180?text=Gambar+tidak+ada'" />
               <h3>${item.nama}</h3>
-              <p>${item.jumlah}</p>
-              <p>${item.status}</p>
-              <p>Rp ${parseInt(item.harga).toLocaleString('id-ID')}</p>
+              <p>Jumlah: ${item.jumlah}</p>
+              <p>Status: ${item.status}</p>
+              <p>Harga: Rp ${isNaN(hargaAngka) ? '-' : hargaAngka.toLocaleString('id-ID')}</p>
               <a href="${item.gambar}" target="_blank" class="btn">Lihat Gambar</a>
             </div>
           `;
         });
+      })
+      .catch(error => {
+        console.error("Gagal memuat data:", error);
       });
   </script>
+
 </body>
 </html>
