@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -27,12 +26,8 @@
       object-fit: contain;
       border-radius: 6px;
     }
-    .product-card h3 {
-      margin: 0.5rem 0 0.2rem;
-    }
-    .product-card p {
-      color: #333;
-    }
+    .product-card h3 { margin: 0.5rem 0 0.2rem; }
+    .product-card p { color: #333; }
     .btn {
       margin-top: 0.5rem;
       padding: 0.5rem 1rem;
@@ -44,21 +39,18 @@
       text-decoration: none;
       display: inline-block;
     }
-    .btn:hover {
-      background: #1b5e20;
-    }
+    .btn:hover { background: #1b5e20; }
   </style>
 </head>
 <body>
   <header>
     <h1>Daftar Produk Rempah</h1>
-    <!--<p>Data langsung dari Google Sheet (terhubung via SheetDB)</p> -->
   </header>
 
   <div class="product-grid" id="produk-container"></div>
 
   <script>
-    fetch("https://sheetdb.io/api/v1/0jtp2oyh32nzr")
+    fetch("/produk")
       .then((response) => response.json())
       .then((data) => {
         const container = document.getElementById("produk-container");
